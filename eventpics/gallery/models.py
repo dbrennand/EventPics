@@ -1,10 +1,12 @@
 import uuid
 from django.db import models
+from django.contrib.auth.models import User
 
 class Gallery(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, unique=True)
     name = models.CharField(max_length=255, unique=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    allowed_users = models.ManyToManyField(User, related_name='allowed_galleries', blank=True)
 
     def __str__(self):
         return str(self.name)
