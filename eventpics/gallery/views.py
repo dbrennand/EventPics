@@ -11,7 +11,7 @@ def index(request):
 def gallery_detail(request, gallery_id):
     gallery = get_object_or_404(Gallery, id=gallery_id)
     # Ensure if the user doesn't have permission to the Gallery they cannot view it
-    if not request.user in gallery.allowed_users.all():
+    if request.user not in gallery.allowed_users.all():
         return redirect('index')
     # Get photos matching the gallery ID
     photos = Photo.objects.filter(gallery=gallery_id)
