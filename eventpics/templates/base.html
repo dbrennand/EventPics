@@ -23,11 +23,17 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
+                <ul class="navbar-nav me-auto">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/">Galleries</a>
                     </li>
                 </ul>
+                {% if user.is_authenticated %}
+                <form class="d-flex ms-auto" method="post" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button class="btn btn-outline-secondary btn-sm" type="submit">Log out</button>
+                </form>
+                {% endif %}
             </div>
         </div>
     </nav>

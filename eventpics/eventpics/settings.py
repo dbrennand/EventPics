@@ -59,7 +59,9 @@ ROOT_URLCONF = 'eventpics.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -152,3 +154,8 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
+
+# Authentication settings
+LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = '/accounts/login/'
+LOGOUT_REDIRECT_URL = '/'
