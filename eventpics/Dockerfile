@@ -13,7 +13,7 @@ COPY . .
 RUN chmod +x entrypoint.sh
 
 # Install dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+RUN --mount=type=cache,target=/root/.cache/pip pip install -r requirements.txt
 
 # Expose the port the app runs on
 EXPOSE 8000
