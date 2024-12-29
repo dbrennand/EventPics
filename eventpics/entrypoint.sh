@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Run PostgreSQL database migrations
 python manage.py migrate
