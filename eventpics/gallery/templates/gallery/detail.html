@@ -1,0 +1,157 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ gallery.name }} Gallery
+{% endblock title %}
+
+{% block body %}
+<style>
+    /*
+    Ensure photos are of a fixed size in the photo grid.
+    */
+    .fixed-size-img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+
+    /*
+    Make the checkbox for photo selection hidden (initially)
+    and of a specific size of the photo.
+    */
+    .checkbox-hidden {
+        display: none;
+        width: 20px;
+        height: 20px;
+    }
+
+    /*
+    When the checkbox is hovered over or checked,
+    display the checkbox.
+    */
+    .card:hover .checkbox-hidden,
+    .checkbox-hidden:checked {
+        display: block;
+    }
+</style>
+
+<!-- Main Body -->
+<div class="container mt-4">
+    <div class="row">
+        <div class="col">
+            <h2>{{ gallery.name }} Gallery</h2>
+        </div>
+        <!-- Gallery Buttons -->
+        <div class="col">
+            <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal"
+                data-bs-target="#uploadModal">
+                <i class="bi bi-upload"></i> Upload
+            </button>
+            <button id="download-button" type="button" class="btn btn-outline-success btn-sm">
+                <i class="bi bi-download"></i> Download Selected
+            </button>
+            <button id="select-all-button" type="button" class="btn btn-outline-secondary btn-sm">
+                <i class="bi bi-check-all"></i> Select All
+            </button>
+            <button id="deselect-all-button" type="button" class="btn btn-outline-secondary btn-sm">
+                <i class="bi bi-x-circle"></i> Deselect All
+            </button>
+        </div>
+    </div>
+
+    <!-- Photo Grid -->
+    {% if photos %}
+    <div class="row">
+        {% for photo in photos %}
+        <div class="col-md-3 mb-4">
+            <div class="card">
+                <a href="{{ photo.photo.url }}">
+                    <img src="{{ photo.photo.url }}" class="img-thumbnail fixed-size-img">
+                </a>
+                <input class="position-absolute top-0 start-0 m-2 checkbox-hidden" type="checkbox"
+                    name="selected-photos" value="{{ photo.photo.url }}">
+            </div>
+        </div>
+        {% if forloop.counter|divisibleby:4 and not forloop.last %}
+    </div>
+    <div class="row">
+        {% endif %}
+        {% endfor %}
+    </div>
+    {% else %}
+    <p>There are no photos in this gallery. Upload some photos!</p>
+    {% endif %}
+</div>
+
+<!-- Upload Photo Modal -->
+<div class="modal fade" id="uploadModal" tabindex="-1" aria-labelledby="uploadModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="uploadModalLabel">Upload Photos</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" enctype="multipart/form-data" action="{% url 'upload_photos' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="gallery" value="{{ gallery.id }}">
+                    <div class="mb-3">
+                        <label for="photos" class="form-label">Photos</label>
+                        <input class="form-control" type="file" id="photos" name="photos" accept="image/*" multiple>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    /*
+    Select all photos button.
+    When a user selects the select-all-button then all the elements
+    with name selected-photos, make the input checkbox checked.
+    */
+    document.getElementById('select-all-button').addEventListener('click', () => {
+        document.querySelectorAll('input[name="selected-photos"]').forEach(function (checkbox) {
+            checkbox.checked = true;
+        });
+    });
+
+    /*
+    Deselect all photos button.
+    When a user selects the deselect-all-button then all the elements
+    with name selected-photos, make the input checkbox is unchecked.
+    */
+    document.getElementById('deselect-all-button').addEventListener('click', () => {
+        document.querySelectorAll('input[name="selected-photos"]').forEach(function (checkbox) {
+            checkbox.checked = false;
+        });
+    });
+
+    /*
+    Invoke client-side download of photos.
+    When a user selects the download-button then get all the input
+    elements with the id 'selected-photos' and the checkbox is checked.
+    */
+    document.getElementById('download-button').addEventListener('click', () => {
+        const checkboxes = document.querySelectorAll('input[name="selected-photos"]:checked');
+        checkboxes.forEach((checkbox) => {
+            const url = checkbox.value;
+            fetch(url)
+                .then((response) => response.blob())
+                .then((blob) => {
+                    const a = document.createElement('a');
+                    const objectUrl = URL.createObjectURL(blob);
+                    a.href = objectUrl;
+                    a.download = url.split('/').pop();
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(objectUrl);
+                })
+                .catch((error) => console.error(`Error downloading the photo: ${error}.`))
+        });
+    });
+</script>
+{% endblock body %}
