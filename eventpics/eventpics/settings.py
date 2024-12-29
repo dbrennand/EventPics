@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('EVENTPICS_SECRET_KEY', get_random_secret_key())
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('EVENTPICS_DEBUG', False)
+DEBUG = os.environ.get('EVENTPICS_DEBUG', False) == 'True'
 
 ALLOWED_HOSTS = os.environ.get('EVENTPICS_ALLOWED_HOSTS', 'localhost').split(',')
 
