@@ -17,6 +17,24 @@ EventPics is a simple Django application designed to capture photos from events.
 > [!NOTE]
 > Gallery Management and Access Control features are only available at `/admin` to authenticated users with the Django `is_staff` permission.
 
+## Screenshots
+
+### Log in
+
+![Log in](images/login.png)
+
+### Galleries
+
+![Galleries](images/galleries.png)
+
+### Gallery Detail
+
+![Gallery Detail](images/gallery_detail.png)
+
+### Upload Photos
+
+![Upload Photos](images/upload.png)
+
 ## Deployment
 
 1. Clone the repository:
