@@ -43,6 +43,5 @@ services:
         condition: service_healthy
         restart: true
 
-
 volumes:
   pgdata:
