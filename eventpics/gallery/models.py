@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 class Gallery(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, unique=True)
     name = models.CharField(max_length=255, unique=True)
+    description = models.TextField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     allowed_users = models.ManyToManyField(User, related_name='allowed_galleries', blank=True)
 
