@@ -39,7 +39,8 @@
 <div class="container mt-4">
     <div class="row">
         <div class="col">
-            <h2>{{ gallery.name }} Gallery</h2>
+            <h2 class="display-5">{{ gallery.name }}</h2>
+            <p class="fst-italic lead">{{ gallery.description }}</p>
         </div>
         <!-- Gallery Buttons -->
         <div class="col">
@@ -66,7 +67,7 @@
         <div class="col-md-3 mb-4">
             <div class="card">
                 <a href="{{ photo.photo.url }}">
-                    <img src="{{ photo.photo.url }}" class="img-thumbnail fixed-size-img">
+                    <img src="{{ photo.photo.url }}" class="img-thumbnail fixed-size-img" alt="image">
                 </a>
                 <input class="position-absolute top-0 start-0 m-2 checkbox-hidden" type="checkbox"
                     name="selected-photos" value="{{ photo.photo.url }}">
