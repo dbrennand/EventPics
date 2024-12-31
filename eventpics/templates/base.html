@@ -14,10 +14,13 @@
     </title>
 </head>
 
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+<body data-bs-theme="light">
+    <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
             <a class="navbar-brand" href="/">EventPics</a>
+            <a style="color: inherit;" href="#">
+                <i id="theme-toggle" class="navbar-brand bi bi-palette-fill ps-2"></i>
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -40,6 +43,26 @@
     {% block body %}
     {% endblock body %}
     <script src="{% static 'bootstrap.bundle.min.js' %}"></script>
+    <script>
+        /*
+        Apply the saved theme on page load.
+        */
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.body.setAttribute('data-bs-theme', savedTheme);
+        });
+
+        /*
+        Toggle theme and save the preference in local storage.
+        */
+        document.getElementById('theme-toggle').addEventListener('click', () => {
+            const body = document.body;
+            const currentTheme = body.getAttribute('data-bs-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            body.setAttribute('data-bs-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+    </script>
 </body>
 
 </html>
