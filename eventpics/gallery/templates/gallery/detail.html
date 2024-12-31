@@ -40,7 +40,9 @@
     <div class="row">
         <div class="col">
             <h2 class="display-5">{{ gallery.name }}</h2>
+            {% if gallery.description %}
             <p class="fst-italic lead">{{ gallery.description }}</p>
+            {% endif %}
         </div>
         <!-- Gallery Buttons -->
         <div class="col">
