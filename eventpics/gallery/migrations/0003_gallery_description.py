@@ -4,15 +4,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('gallery', '0002_gallery_allowed_users'),
+        ("gallery", "0002_gallery_allowed_users"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='gallery',
-            name='description',
+            model_name="gallery",
+            name="description",
             field=models.TextField(blank=True),
         ),
     ]

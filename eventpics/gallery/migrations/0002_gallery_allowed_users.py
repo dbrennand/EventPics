@@ -5,16 +5,19 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('gallery', '0001_initial'),
+        ("gallery", "0001_initial"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='gallery',
-            name='allowed_users',
-            field=models.ManyToManyField(blank=True, related_name='allowed_galleries', to=settings.AUTH_USER_MODEL),
+            model_name="gallery",
+            name="allowed_users",
+            field=models.ManyToManyField(
+                blank=True,
+                related_name="allowed_galleries",
+                to=settings.AUTH_USER_MODEL,
+            ),
         ),
     ]
