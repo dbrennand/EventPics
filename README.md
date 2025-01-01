@@ -29,8 +29,6 @@ EventPics is a simple Django application designed to capture photos from events.
 
 ### Gallery Detail
 
-![Gallery Detail](images/gallery_detail.png)
-
 > [!NOTE]
 > Sample photos taken from [Pexels](https://www.pexels.com/search/Event/):
 > [1](https://www.pexels.com/photo/people-sitting-on-gang-chairs-2774556/)
@@ -38,7 +36,10 @@ EventPics is a simple Django application designed to capture photos from events.
 > [3](https://www.pexels.com/photo/clear-flute-glasses-on-black-tray-16408/)
 > [4](https://www.pexels.com/photo/people-having-a-concert-1190297/)
 
-![Gallery Detail](images/gallery_detail_grid.png)
+![Gallery Detail](images/gallery_detail.png)
+
+![Gallery Detail Mobile](images/gallery_detail_mobile.png)
+
 
 ### Upload Photos
 
