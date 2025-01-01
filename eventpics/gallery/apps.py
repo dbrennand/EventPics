@@ -6,4 +6,4 @@ class GalleryConfig(AppConfig):
     name = 'gallery'
 
     def ready(self):
-        import gallery.signals
+        import gallery.signals # noqa: F401
