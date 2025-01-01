@@ -41,12 +41,27 @@ EventPics is a simple Django application designed to capture photos from events.
 
 ![Gallery Detail Mobile](images/gallery_detail_mobile.png)
 
-
 ### Upload Photos
 
 ![Upload Photos](images/upload.png)
 
-## Deployment
+## Usage
+
+### S3 Integration
+
+EventPics uses the [`django-storages`](https://django-storages.readthedocs.io/en/latest/) library to store photos in an S3 bucket. For EventPics to function you **must** set the following environment variables in the `.env` file:
+
+```bash
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
+AWS_STORAGE_BUCKET_NAME=
+AWS_S3_REGION_NAME=
+AWS_S3_ENDPOINT_URL=
+```
+
+The [`django-storages`](https://django-storages.readthedocs.io/en/latest/backends/s3_compatible/index.html) documentation provides instructions for configuration with S3 compatible object storage services.
+
+### Deployment Steps
 
 1. Clone the repository:
 
