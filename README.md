@@ -2,7 +2,7 @@
 
 Capture Photos from Events!
 
-EventPics is a simple Django application designed to capture photos from events. Built using [Django](https://www.djangoproject.com/), [Bootstrap 5](https://getbootstrap.com/docs/5.3/getting-started/introduction/), [Bootstrap Icons](https://icons.getbootstrap.com/), and [PostgreSQL](https://www.postgresql.org/). It provides a simple interface for uploading, viewing and downloading photos from events.
+EventPics is a simple Django application designed to capture photos from events. Built using [Django](https://www.djangoproject.com/), [Bootstrap 5.3](https://getbootstrap.com/docs/5.3/getting-started/introduction/), [Bootstrap Icons](https://icons.getbootstrap.com/), and [PostgreSQL](https://www.postgresql.org/). It provides a simple interface for uploading, viewing and downloading photos from events.
 
 ## Features
 
@@ -12,6 +12,7 @@ EventPics is a simple Django application designed to capture photos from events.
 - **Photo Download**: Download selected photos from a gallery.
 - **Access Control**: Restrict access to galleries based on user permissions.
 - **Responsive Design**: Mobile-friendly interface using Bootstrap 5.
+- **Dark Mode**: Toggle between light and dark modes.
 - **S3 Integration**: Store photos using compatible S3 object storage services.
 
 > [!NOTE]
