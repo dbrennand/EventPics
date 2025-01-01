@@ -10,7 +10,7 @@ services:
     expose:
       - "5432"
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - pg_data:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 5s
@@ -18,7 +18,7 @@ services:
       retries: 5
 
   eventpics:
-    build: ./eventpics
+    build: ../eventpics
     image: dbrennand/eventpics:0.1.0
     container_name: eventpics
     environment:
@@ -29,6 +29,9 @@ services:
       EVENTPICS_DB_PASSWORD: "${EVENTPICS_DB_PASSWORD}"
       EVENTPICS_DB_HOST: "${EVENTPICS_DB_HOST}"
       EVENTPICS_ALLOWED_HOSTS: "${EVENTPICS_ALLOWED_HOSTS}"
+      EVENTPICS_CSRF_TRUSTED_ORIGINS: "${EVENTPICS_CSRF_TRUSTED_ORIGINS}"
+      EVENTPICS_CSRF_COOKIE_SECURE: "${EVENTPICS_CSRF_COOKIE_SECURE}"
+      EVENTPICS_SESSION_COOKIE_SECURE: "${EVENTPICS_SESSION_COOKIE_SECURE}"
       DJANGO_SUPERUSER_PASSWORD: "${DJANGO_SUPERUSER_PASSWORD}"
       DJANGO_SUPERUSER_EMAIL: "${DJANGO_SUPERUSER_EMAIL}"
       DJANGO_SUPERUSER_USERNAME: "${DJANGO_SUPERUSER_USERNAME}"
@@ -37,12 +40,27 @@ services:
       AWS_STORAGE_BUCKET_NAME: "${AWS_STORAGE_BUCKET_NAME}"
       AWS_S3_REGION_NAME: "${AWS_S3_REGION_NAME}"
       AWS_S3_ENDPOINT_URL: "${AWS_S3_ENDPOINT_URL}"
-    ports:
-      - "8000:8000"
+    expose:
+      - "8000"
     depends_on:
       db:
         condition: service_healthy
         restart: true
 
+  caddy:
+    image: docker.io/caddy:2.8.4-alpine
+    container_name: caddy
+    volumes:
+      - ./conf:/etc/caddy
+      - caddy_data:/data
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    depends_on:
+      - db
+      - eventpics
+
 volumes:
-  pgdata:
+  pg_data:
+  caddy_data:
