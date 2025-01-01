@@ -5,12 +5,18 @@ from .models import Gallery, Photo
 
 @login_required
 def index(request):
+    """
+    Index view to display all galleries the user has access to.
+    """
     galleries = Gallery.objects.filter(allowed_users=request.user)
     return render(request, "gallery/index.html", {"galleries": galleries})
 
 
 @login_required
 def gallery_detail(request, gallery_id):
+    """
+    Gallery detail view to display all photos in a gallery.
+    """
     gallery = get_object_or_404(Gallery, id=gallery_id)
     # Ensure if the user doesn't have permission to the Gallery they cannot view it
     if request.user not in gallery.allowed_users.all():
@@ -24,6 +30,9 @@ def gallery_detail(request, gallery_id):
 
 @login_required
 def upload_photos(request):
+    """
+    View to upload photos to a gallery.
+    """
     if request.method == "POST":
         # Get the Gallery ID from the form
         gallery_id = request.POST.get("gallery")
