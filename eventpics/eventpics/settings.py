@@ -28,7 +28,11 @@ DEBUG = os.environ.get("EVENTPICS_DEBUG", False) == "True"
 
 ALLOWED_HOSTS = os.environ.get("EVENTPICS_ALLOWED_HOSTS", "localhost").split(",")
 
-# HTTPS settings
+# https://stackoverflow.com/a/72606904
+# https://docs.djangoproject.com/en/5.1/ref/settings/#secure-proxy-ssl-header
+if os.environ.get("EVENTPICS_ENABLE_SECURE_PROXY_SSL_HEADER", False) == "True":
+    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
 # https://docs.djangoproject.com/en/5.1/ref/settings/#csrf-trusted-origins
 CSRF_TRUSTED_ORIGINS = os.environ.get("EVENTPICS_CSRF_TRUSTED_ORIGINS", "").split(",")
 # https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/#https
