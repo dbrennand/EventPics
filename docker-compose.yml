@@ -19,6 +19,7 @@ services:
 
   eventpics:
     build: ./eventpics
+    image: dbrennand/eventpics:0.1.0
     container_name: eventpics
     environment:
       EVENTPICS_SECRET_KEY: "${EVENTPICS_SECRET_KEY}"
