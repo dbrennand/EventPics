@@ -27,6 +27,11 @@ DEBUG = os.environ.get('EVENTPICS_DEBUG', False) == 'True'
 
 ALLOWED_HOSTS = os.environ.get('EVENTPICS_ALLOWED_HOSTS', 'localhost').split(',')
 
+# HTTPS settings
+# https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/#https
+CSRF_COOKIE_SECURE = os.environ.get('EVENTPICS_CSRF_COOKIE_SECURE', False) == 'True'
+SESSION_COOKIE_SECURE = os.environ.get('EVENTPICS_SESSION_COOKIE_SECURE', False) == 'True'
+
 # Application definition
 
 INSTALLED_APPS = [
