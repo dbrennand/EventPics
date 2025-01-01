@@ -34,7 +34,8 @@ if os.environ.get("EVENTPICS_ENABLE_SECURE_PROXY_SSL_HEADER", False) == "True":
     SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 # https://docs.djangoproject.com/en/5.1/ref/settings/#csrf-trusted-origins
-CSRF_TRUSTED_ORIGINS = os.environ.get("EVENTPICS_CSRF_TRUSTED_ORIGINS", "").split(",")
+if os.environ.get("EVENTPICS_CSRF_TRUSTED_ORIGINS"):
+    CSRF_TRUSTED_ORIGINS = os.environ.get("EVENTPICS_CSRF_TRUSTED_ORIGINS").split(",")
 # https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/#https
 CSRF_COOKIE_SECURE = os.environ.get("EVENTPICS_CSRF_COOKIE_SECURE", False) == "True"
 SESSION_COOKIE_SECURE = (
