@@ -1,0 +1,14 @@
+name: Python Lint
+
+on:
+  push:
+    branches:
+      - "*"
+
+jobs:
+  python-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: astral-sh/ruff-action@v3
+        with:
+          args: "format --check"
