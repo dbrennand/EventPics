@@ -18,8 +18,9 @@ services:
       retries: 5
 
   eventpics:
-    build: ../eventpics
-    image: dbrennand/eventpics:0.1.0
+    # Uncomment to build in development
+    # build: ../eventpics
+    image: ghcr.io/dbrennand/eventpics:0.1.0
     container_name: eventpics
     environment:
       EVENTPICS_SECRET_KEY: "${EVENTPICS_SECRET_KEY}"
