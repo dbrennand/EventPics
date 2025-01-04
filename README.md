@@ -1,10 +1,13 @@
-# EventPics
+# EventPics 📷
+
+![Build Container Image](https://github.com/dbrennand/EventPics/actions/workflows/build.yml/badge.svg)
+![Python Lint](https://github.com/dbrennand/EventPics/actions/workflows/lint.yml/badge.svg)
 
 Capture Photos from Events!
 
 EventPics is a simple Django application designed to capture photos from events. Built using [Django](https://www.djangoproject.com/), [Bootstrap 5.3](https://getbootstrap.com/docs/5.3/getting-started/introduction/), [Bootstrap Icons](https://icons.getbootstrap.com/), and [PostgreSQL](https://www.postgresql.org/). It provides a simple interface for uploading, viewing and downloading photos from events.
 
-## Features
+## Features 🚀
 
 - **User Authentication**: Login and logout functionality.
 - **Gallery Management**: Create and manage multiple galleries.
@@ -18,7 +21,7 @@ EventPics is a simple Django application designed to capture photos from events.
 > [!NOTE]
 > Gallery Management and Access Control features are only available at `/admin` to authenticated users with the Django `is_staff` permission.
 
-## Screenshots
+## Screenshots 📸
 
 ### Log in
 
@@ -47,7 +50,7 @@ EventPics is a simple Django application designed to capture photos from events.
 
 ## Usage
 
-### S3 Integration
+### S3 Integration 📦
 
 EventPics uses the [`django-storages`](https://django-storages.readthedocs.io/en/latest/) library to store photos in an S3 bucket. For EventPics to function you **must** set the following environment variables in the `.env` file:
 
@@ -61,7 +64,7 @@ AWS_S3_ENDPOINT_URL=
 
 The [`django-storages`](https://django-storages.readthedocs.io/en/latest/backends/s3_compatible/index.html) documentation provides instructions for configuration with S3 compatible object storage services.
 
-### Deployment Steps
+### Deployment Steps 🚀
 
 1. Clone the repository:
 
@@ -105,6 +108,6 @@ eventpics.example.com {
 }
 ```
 
-## License
+## License 📝
 
 [LICENSE](LICENSE)
