@@ -11,5 +11,5 @@ jobs:
     steps:
       - uses: astral-sh/ruff-action@v3
         with:
-          src: "./eventpics"
+          src: "/home/runner/work/EventPics/EventPics/eventpics"
           args: "format --check"
