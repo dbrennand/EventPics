@@ -9,7 +9,9 @@ jobs:
   python-lint:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - uses: astral-sh/ruff-action@v3
         with:
-          src: "/home/runner/work/EventPics/EventPics/eventpics"
           args: "format --check"
