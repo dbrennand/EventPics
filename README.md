@@ -126,7 +126,7 @@ pip install -r requirements-dev.txt
 pre-commit install
 ```
 
-If you need to run Django migrations for changes to the models:
+If you need to create Django migrations for changes to the models:
 
 ```bash
 cd eventpics
