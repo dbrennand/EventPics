@@ -87,7 +87,7 @@ The [`django-storages`](https://django-storages.readthedocs.io/en/latest/backend
 4. Deploy the application using Docker Compose:
 
     ```bash
-    docker compose up -d --build
+    docker compose up -d
     ```
 
 By default the application will be available over HTTPS at [`localhost`](https://localhost). The default configuration is for development purposes and should not be used in production. The provided [`docker-compose.yml`](docker/docker-compose.yml) file uses [Caddy](https://caddyserver.com/) as a reverse proxy.
@@ -106,6 +106,39 @@ Below is a minimal example Caddyfile configuration:
 eventpics.example.com {
     reverse_proxy eventpics:8000
 }
+```
+
+## Development 🛠
+
+> [!NOTE]
+> The steps below are for development only. Use these steps only if you plan on working on the application.
+
+Initialise the development environment:
+
+```bash
+# Create the Python virtual environment
+python -m venv .venv
+# Activate the Python virtual environment
+source .venv/bin/activate
+# Install the required dependencies
+pip install -r requirements-dev.txt
+# Install the pre-commit hooks
+pre-commit install
+```
+
+If you need to create Django migrations for changes to the models:
+
+```bash
+cd eventpics
+python manage.py makemigrations gallery
+```
+
+Build and test the application using Docker Compose:
+
+```bash
+# These steps assume you've created and configured the .env file
+cd docker
+docker compose -f docker-compose-dev.yml up -d --build
 ```
 
 ## License 📝
