@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block body %}
+<div class="container mt-4">
+    <h1>Galleries</h1>
+    {% if galleries %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Created At</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for gallery in galleries %}
+            <tr>
+                <td>
+                    <a href="{% url 'gallery_detail' gallery.id %}">{{ gallery.name }}</a>
+                </td>
+                <td>{{ gallery.created_at }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p class="lead">No Galleries to show.</p>
+    {% endif %}
+</div>
+{% endblock body %}
