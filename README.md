@@ -87,7 +87,13 @@ The [`django-storages`](https://django-storages.readthedocs.io/en/latest/backend
     docker compose up -d --build
     ```
 
-By default the application will be available over HTTPS at [`localhost`](https://localhost). The default configuration is for development purposes and should not be used in production. The provided [`docker-compose.yml`](docker/docker-compose.yml) file uses [Caddy](https://caddyserver.com/) as a reverse proxy. For production deployments, modify the [`Caddyfile`](docker/conf/Caddyfile) to issue certificates using [Let's Encrypt](https://letsencrypt.org/) via the [HTTP-01](https://caddyserver.com/docs/automatic-https#http-challenge) challenge. Below is a minimal example:
+By default the application will be available over HTTPS at [`localhost`](https://localhost). The default configuration is for development purposes and should not be used in production. The provided [`docker-compose.yml`](docker/docker-compose.yml) file uses [Caddy](https://caddyserver.com/) as a reverse proxy.
+
+#### Production Deployment
+
+For production deployments, modify the [`Caddyfile`](docker/conf/Caddyfile) to issue certificates using [Let's Encrypt](https://letsencrypt.org/) via the [HTTP-01](https://caddyserver.com/docs/automatic-https#http-challenge) challenge.
+
+Below is a minimal example Caddyfile configuration:
 
 ```
 {
