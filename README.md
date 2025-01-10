@@ -64,6 +64,11 @@ AWS_S3_ENDPOINT_URL=
 
 The [`django-storages`](https://django-storages.readthedocs.io/en/latest/backends/s3_compatible/index.html) documentation provides instructions for configuration with S3 compatible object storage services.
 
+> [!NOTE]
+> S3 Cross Origin Resource Sharing (CORS) Configuration:
+>
+> To allow objects in S3 to load in EventPics you must configure the CORS settings for the bucket to be the origin of the application. This will be the FQDN of the application, e.g. `https://eventpics.example.com`.
+
 ### Deployment Steps 🚀
 
 1. Clone the repository:

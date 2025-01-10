@@ -5,6 +5,17 @@
 {% endblock title %}
 
 {% block body %}
+<style>
+    .photo-grid-img {
+        /* Set a fixed height */
+        height: 250px;
+        /* Ensure the image covers the area without distortion */
+        object-fit: cover;
+        /* Ensure the image takes the full width of the container */
+        width: 100%;
+    }
+</style>
+
 <!-- Jumbotron like heading  -->
 <section class="py-5 text-center container">
     <div class="row py-lg-5">
@@ -66,7 +77,7 @@
             <div class="col">
                 <div class="card shadow-sm">
                     <a href="{{ photo.photo.url }}">
-                        <img src="{{ photo.photo.url }}" class="img-thumbnail" alt="image">
+                        <img src="{{ photo.photo.url }}" class="img-thumbnail photo-grid-img" alt="image">
                     </a>
                     <input class="position-absolute top-0 start-0 m-2" type="checkbox" name="selected-photos"
                         value="{{ photo.photo.url }}" style="display: none; width: 20px; height: 20px;">
